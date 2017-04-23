@@ -1,80 +1,92 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>NHL Player Stats</title>
     <script src="scripts/require.js"></script>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/bootstrap-table.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/bootstrap-table.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
-<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/bootstrap-table.min.js"></script>
-<script src="scripts/bootstrap-table-filter-control.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/bootstrap-table.min.js"></script>
+    <script src="scripts/bootstrap-table-filter-control.js"></script>
 
-    <script>require(["scripts/main"], function () {})</script>
+    <script>
+        require(["scripts/main"], function() {})
+    </script>
     <style>
         body {
-            font: 14px sans-serif;
+            margin: 15px;
+            /*background-color: #F1F3F3    */
         }
 
-        .arc path {
-            stroke: #fff;
-            stroke-width: 3px;
+        .bar {
+            fill: #6F257F;
         }
 
-        .node circle {
-            fill: #fff;
-            stroke: steelblue;
-            stroke-width: 1.5px;
-        }
-
-        .node {
-            font: 10px sans-serif;
-        }
-
-        .link {
+        .axis path,
+        .axis line {
             fill: none;
-            stroke: #ccc;
-            stroke-width: 1.5px;
+            stroke: #D4D8DA;
+            stroke-width: 1px;
+            shape-rendering: crispEdges;
+        }
+
+        .x path {
+            display: none;
         }
     </style>
-</head>
-<body>
-            <div class="col-md-6">
-            <table id="orders-table" class="table table-striped" data-filter-control="true" data-pagination="true" data-page-size="10" data-page-list="[10, 20, 50]" data-search="true">
-                <thead>
 
-                    <tr>
-                        <th data-field="Name" data-sortable="false" >Name</th>
-                        <th data-field="Points" data-sortable="true" >Points</th>
-                        <th data-field="Goals" data-sortable="true">Goals</th>
-                        <th data-field="Assists" data-sortable="true">Assists</th>
-                        <th data-field="Games" data-sortable="true">Games</th>
-                        <th data-field="Position" data-sortable="true" data-filter-control="select">Pos</th>
-                     <!--    <th data-field="title" data-sortable="true">Title</th>
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-10">
+                <table id="orders-table" class="table table-striped" data-filter-control="true" data-pagination="true" data-page-size="10" data-page-list="[10, 20, 50]" data-search="true">
+                    <thead>
+
+                        <tr>
+                            <th data-field="Name" data-sortable="false">Name</th>
+                            <th data-field="Points" data-sortable="true">Points</th>
+                            <th data-field="Goals" data-sortable="true">Goals</th>
+                            <th data-field="Assists" data-sortable="true">Assists</th>
+                            <th data-field="Games" data-sortable="true">Games</th>
+                            <th data-field="Position" data-sortable="true" data-filter-control="select">Pos</th>
+                            <!--    <th data-field="title" data-sortable="true">Title</th>
                         <th data-field="FileSize" data-sortable="true">File Size</th>
                         <th data-field="url1" data-formatter="PDFLink" data-sortable="true">URL (PDF)</th>
                         <th data-field="url2" data-formatter="XLSLink" data-sortable="true">URL (xlsx)</th> -->
-                        
-                        
-<!--                        <th data-field="publishDate" data-sortable="true">Publish Date</th>-->
-                      
-                    </tr>
-                </thead>
-                <tbody class="searchable">
 
 
-                    <div id='spinner' class='spinner'></div>
+                            <!--                        <th data-field="publishDate" data-sortable="true">Publish Date</th>-->
 
-                </tbody>
-            </table>
+                        </tr>
+                    </thead>
+                    <tbody class="searchable">
+
+
+                        <div id='spinner' class='spinner'></div>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-10">
+
+                <svg width="860" height="500"></svg>
+            </div>
+
         </div>
+    </div>
 
     <div id="donut-chart"></div>
     <div id="dendrogram"></div>
 </body>
+
 </html>
