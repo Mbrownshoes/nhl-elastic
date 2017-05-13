@@ -1,6 +1,6 @@
 
 var dataset;
-
+$button = $('#button');
 define(['https://cdnjs.cloudflare.com/ajax/libs/d3/4.8.0/d3.js', 'scripts/elasticsearch'], function(d3, elasticsearch) {
 
 
@@ -57,13 +57,23 @@ define(['https://cdnjs.cloudflare.com/ajax/libs/d3/4.8.0/d3.js', 'scripts/elasti
             // }
         })
         $(function() {
-            // console.log(smallDat)
             $('#orders-table').bootstrapTable({
                 data: smallDat
             });
+            console.log(JSON.stringify($('#orders-table').bootstrapTable('getData','useCurrentPage')))
+ 
         });
 
+        $('#orders-table').on('page-change.bs.table', function (e, number, size) {
+            var new_data=JSON.stringify($('#orders-table').bootstrapTable('getData','useCurrentPage'));
+            console.log(new_data)
+        });
+
+  
+
+
     };
+
     // console.log(stats)
 
     function graph(stats) {
@@ -85,20 +95,13 @@ define(['https://cdnjs.cloudflare.com/ajax/libs/d3/4.8.0/d3.js', 'scripts/elasti
         var g = svg.append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-        // d3.json("data.json", function(error, data) {
-        // if (error) throw error;
-        // console.log(stats)
+
         var data = stats.slice(0, 10);
         data.sort(function(a, b) {
             return a._source['points'] - b._source['points'];
         });
 
-        // console.log(d3.max(data, function(d) {
-        //     // console.log(d._source['points'])
-
-        //  return d._source['points']; }))
         x.domain([0, d3.max(data, function(d) {
-            // console.log(d._source['points'])
 
             return d._source['points'];
         })]);
